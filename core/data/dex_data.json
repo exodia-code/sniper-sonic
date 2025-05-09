@@ -1,0 +1,61 @@
+{
+    "shadow": {
+        "name": "Shadow DEX",
+        "address": {
+            "factory": "0x2dA25E7446A70D7be65fd4c053948BEcAA6374c8"
+        },
+        "abi": {
+            "getPair": [
+                {
+                    "constant": true,
+                    "inputs": [
+                        {"name": "tokenA", "type": "address"},
+                        {"name": "tokenB", "type": "address"},
+                        {"name": "stable", "type": "bool"}
+                    ],
+                    "name": "getPair",
+                    "outputs": [
+                        {"name": "pair", "type": "address"}
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ]
+        }
+    },
+    "metropolis": {
+        "name": "Metropolis Exchange",
+        "address": {
+            "factory": "0x1570300e9cFEC66c9Fb0C8bc14366C86EB170Ad0"
+        },
+        "abi": {
+            "getPair": [
+                    {
+                    "inputs": [
+                        {
+                            "internalType":"address",
+                            "name":"tokenA",
+                            "type":"address"
+                        },
+                        {
+                            "internalType":"address",
+                            "name":"tokenB",
+                            "type":"address"
+                        }
+                    ],
+                    "name":"getPair",
+                    "outputs": [
+                        {
+                            "internalType":"address",
+                            "name":"pair",
+                            "type":"address"
+                        }
+                    ],
+                    "stateMutability":"view",
+                    "type":"function"
+                }
+            ]
+        }
+    }
+}

@@ -1,2 +1,7 @@
 web3
 dotenv
+eth_account
+time
+datetime
+re
+requests
