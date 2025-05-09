@@ -124,12 +124,12 @@ def token_source_status(address):
         view.response_message("ERRO", f"Error: {response.status_code}")
 
 def scan_new_token():
-    # latest_checked = w3.eth.block_number
-    latest_checked = 379085
+    latest_checked = w3.eth.block_number
+    # latest_checked = 379085
 
     while True:
-        # latest_block = w3.eth.block_number
-        latest_block = 379100
+        latest_block = w3.eth.block_number
+        # latest_block = 379100
 
         if latest_block > latest_checked:
             view.response_message("STAT", f"Checking block {latest_checked + 1} ~ {latest_block}")
@@ -165,7 +165,7 @@ def scan_new_token():
                                 metadata = False
 
                             view.response_message("INFO", f"Continue checking in block {latest_block}...")
-            # latest_checked = latest_block
+            latest_checked = latest_block
 
         if 'metadata' in locals() and metadata:
             view.response_message("INFO", f"Token: {name} ({symbol}), Supply: {supply}")
