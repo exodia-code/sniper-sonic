@@ -36,7 +36,12 @@ cd sniper-sonic
 pip install -r requirements.txt
 ```
 
-5. Enjoy the App.
+5. Important: Copy .env.example to .env and adjust the necessary settings (such as API keys, wallet keys, etc.).
+```bash
+cp .env.example .env
+```
+
+6. Enjoy the App.
 ```bash
 python3 main.py
 ```
@@ -55,7 +60,12 @@ cd sniper-sonic
 pip install -r requirements.txt
 ```
 
-3. Run the application.
+3. Important: Copy .env.example to .env and adjust the necessary settings (such as API keys, wallet keys, etc.).
+```bash
+cp .env.example .env
+```
+
+4. Run the application.
 ```bash
 python3 main.py
 ```
