@@ -9,5 +9,5 @@ def handle_sigint(signum, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, handle_sigint)
     
-    v.main_menu()
+    v.main_menu(isFromMain=True)
     # controller.scan_new_token()

@@ -112,131 +112,396 @@
                         "type":"function"
                     }
                   ]
-            }
-        }
-    },
-    "metropolis": {
-        "name": "Metropolis Exchange",
-        "slug": "metropolis",
-        "url": "https://metropolis.exchange/",
-        "config": {
-            "factories": {
-                "V2": {
-                    "address": "0x1570300e9cFEC66c9Fb0C8bc14366C86EB170Ad0",
-                    "abi": {
-                        "getPair": [
-                            {
-                                "inputs": [
-                                    {
-                                        "internalType":"address",
-                                        "name":"tokenA",
-                                        "type":"address"
-                                    },
-                                    {
-                                        "internalType":"address",
-                                        "name":"tokenB",
-                                        "type":"address"
-                                    }
-                                ],
-                                "name":"getPair",
-                                "outputs": [
-                                    {
-                                        "internalType":"address",
-                                        "name":"pair",
-                                        "type":"address"
-                                    }
-                                ],
-                                "stateMutability":"view",
-                                "type":"function"
-                            }
-                        ]
-                    }
+            },
+            "router": {
+                "address": "0x1D368773735ee1E678950B7A97bcA2CafB330CDc",
+                "abi": {
+                    "swapExactETHForTokens": [
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                }
+                            ],
+                            "name":"getAmountsOut",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"view",
+                            "type":"function"
+                        },
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountOutMin",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                },
+                                {
+                                    "internalType":"address",
+                                    "name":"to",
+                                    "type":"address"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"deadline",
+                                    "type":"uint256"
+                                }
+                            ],
+                            "name":"swapExactETHForTokens",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"payable",
+                            "type":"function"
+                        }
+                    ],
+                    "swapExactTokensForETH": [
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                }
+                            ],
+                            "name":"getAmountsOut",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"view",
+                            "type":"function"
+                        },
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountOutMin",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                },
+                                {
+                                    "internalType":"address",
+                                    "name":"to",
+                                    "type":"address"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"deadline",
+                                    "type":"uint256"
+                                }
+                            ],
+                            "name":"swapExactTokensForETH",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"nonpayable",
+                            "type":"function"
+                        }
+                    ],
+                    "swapExactTokensForETHSupportingFeeOnTransferTokens": [
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                }
+                            ],
+                            "name":"getAmountsOut",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"view",
+                            "type":"function"
+                        },
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountOutMin",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                },
+                                {
+                                    "internalType":"address",
+                                    "name":"to",
+                                    "type":"address"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"deadline",
+                                    "type":"uint256"
+                                }
+                            ],
+                            "name":"swapExactTokensForETHSupportingFeeOnTransferTokens",
+                            "outputs":[],
+                            "stateMutability":"nonpayable",
+                            "type":"function"
+                        }
+                    ],
+                    "swapExactTokensForTokens": [
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                }
+                            ],
+                            "name":"getAmountsOut",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"view",
+                            "type":"function"
+                        },
+                        {
+                            "inputs":[
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountIn",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"amountOutMin",
+                                    "type":"uint256"
+                                },
+                                {
+                                    "components":[
+                                        {
+                                            "internalType":"address",
+                                            "name":"from",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"address",
+                                            "name":"to",
+                                            "type":"address"
+                                        },
+                                        {
+                                            "internalType":"bool",
+                                            "name":"stable",
+                                            "type":"bool"
+                                        }
+                                    ],
+                                    "internalType":"struct IRouter.route[]",
+                                    "name":"routes",
+                                    "type":"tuple[]"
+                                },
+                                {
+                                    "internalType":"address",
+                                    "name":"to",
+                                    "type":"address"
+                                },
+                                {
+                                    "internalType":"uint256",
+                                    "name":"deadline",
+                                    "type":"uint256"
+                                }
+                            ],
+                            "name":"swapExactTokensForTokens",
+                            "outputs":[
+                                {
+                                    "internalType":"uint256[]",
+                                    "name":"amounts",
+                                    "type":"uint256[]"
+                                }
+                            ],
+                            "stateMutability":"nonpayable",
+                            "type":"function"
+                        }
+                    ]
                 }
-            },
-            "pairContract": {
-                "address": "0x1570300e9cFEC66c9Fb0C8bc14366C86EB170Ad0",
-                "abi": [
-                    {
-                        "inputs": [],
-                        "name":"token0",
-                        "outputs": [
-                            {
-                                "internalType":"address",
-                                "name":"",
-                                "type":"address"
-                            }
-                        ],
-                        "stateMutability":"view",
-                        "type":"function"
-                    },
-                    {
-                        "inputs": [],
-                        "name":"token1",
-                        "outputs": [
-                            {
-                                "internalType":"address",
-                                "name":"",
-                                "type":"address"
-                            }
-                        ],
-                        "stateMutability":"view",
-                        "type":"function"
-                    },
-                    {
-                        "constant": true,
-                        "inputs": [],
-                        "name": "getReserves",
-                        "outputs": [
-                            {"name": "_reserve0", "type": "uint112"},
-                            {"name": "_reserve1", "type": "uint112"},
-                            {"name": "_blockTimestampLast", "type": "uint32"}
-                        ],
-                        "payable": false,
-                        "stateMutability": "view",
-                        "type": "function"
-                    }
-                ]
-            },
-            "getTokenContract": {
-                "address": "0x1570300e9cFEC66c9Fb0C8bc14366C86EB170Ad0",
-                "abi": [
-                    {
-                        "constant": true,
-                        "inputs": [],
-                        "name":"name",
-                        "outputs":[
-                            {
-                                "name":"",
-                                "type":"string"
-                            }
-                        ],
-                        "type":"function"
-                    },
-                    {
-                        "constant":true,
-                        "inputs":[],
-                        "name":"symbol",
-                        "outputs":[
-                            {
-                                "name":"",
-                                "type":"string"
-                            }
-                        ],
-                        "type":"function"
-                    },
-                    {
-                        "constant":true,
-                        "inputs":[],
-                        "name":"decimals",
-                        "outputs":[
-                            {
-                                "name":"",
-                                "type":"uint8"
-                            }
-                        ],
-                        "type":"function"
-                    }
-                  ]
             }
         }
     }

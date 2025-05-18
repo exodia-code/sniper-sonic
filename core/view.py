@@ -1,13 +1,14 @@
 from eth_account import Account
-import os
+import os, sys, time, datetime, threading
 import core.model as model
 import core.controller as controller
-import time, datetime
 
 # TEMPLATE / LAYOUT / STYLING
 
-def user_input(msg=""):
+def user_input(msg="", default=None):
     answer = input(f"{msg}\n> ")
+    if answer == "" and default:
+        return default
     return answer
     
 def get_time_now():
@@ -28,15 +29,41 @@ def response_message(status, msg):
 def hidden_address(addr):
     return f"{addr[:5]}...{addr[-5:]}"
 
-# MENU / PAGING ============================================
+def spinner_loading(stop_event, title):
+    spinner = ["|", "/", "-", "\\"]
+    idx = 0
+    while not stop_event.is_set():
+        print(f"\r{title} {spinner[idx % len(spinner)]}", end="", flush=True)
+        idx += 1
+        time.sleep(0.1)
+    print("")
 
-def main_menu(cls=True):
+def loading_thread(target_task, title, background_task):
+    stop_event = threading.Event()
+
+    thread_event = threading.Thread(target=target_task, args=(stop_event, title,))
+    thread_event.start()
+
+    result = background_task()
+
+    stop_event.set()
+    thread_event.join()
+
+    return result
+
+
+# MENU / PAGING ============================================
+def main_menu(cls=True, isFromMain=False):
+    if isFromMain:
+        rpc, latency = loading_thread(spinner_loading, "Checking fastest RPC", controller.scan_fastest_rpc)
+
     if cls:
         os.system('cls')
-    print(f"\033[92m{"+":-<50}+")
-    print(f"|{"SNIPER BOT | By: Exodia":^49}|")
-    print(f"|{"(Sonic Network)":^49}|")
-    print(f"{"+":-<50}+")
+    print(f"\033[92m{"+":-<70}+")
+    print(f"|{"SNIPER BOT | By: Exodia":^69}|")
+    print(f"|{"(Sonic Mainnet)":^69}|")
+    print(f"|{f'rpc: {rpc} [{latency:.2f} ms]':^69}|") if isFromMain else None
+    print(f"{"+":-<70}+")
     list_menu()
     redirect(f"main.{user_input()}")
 
@@ -46,6 +73,9 @@ def list_menu():
         "Bind Wallet (only use Public Key)",
         "Check Balance",
         "Scan new token",
+        "Get Pair",
+        "Buy Token",
+        "Sell Token",
     ]
 
     address, is_connected = model.wallet_is_connected()
@@ -71,6 +101,9 @@ def redirect(user):
         "main.1": bind_wallet,
         "main.2": check_balance,
         "main.3": scan_new_token,
+        "main.4": get_pair,
+        "main.5": buy_token,
+        "main.6": sell_token,
         "main.99": exit,
     }
 
@@ -112,4 +145,17 @@ def check_balance():
 def scan_new_token():
     if controller.init_connection():
         controller.scan_new_token()
+
+def get_pair():
+    token_address = user_input("Input token address:")
+    paired = user_input("Pair with? [Default: Wrapped Sonic (wS)]")
+    controller.get_pair(token_address, paired)
     
+def buy_token():
+    token_address = user_input("Input token address:")
+    controller.buy_token(token_address)
+    
+def sell_token():
+    # token_address = user_input("Input token address:")
+    token_address = "0x888852d1c63c7b333efEb1c4C5C79E36ce918888"
+    controller.sell_token(token_address)
